@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  body {
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    background-color: #fdfdfd;
+  }
+
+  .head_text {
+    color: white;
+  }
+
+  .card {
+    box-shadow: 0 16px 48px #0d0f11;
+  }
+</style>
+
+<header class="masthead">
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h3 class=" site-heading my-4 mt-3 text-white"> About This Webpage</h3>
+          <p class="text-light">
+            Hello everyone! This is a simple django application to share details of some of the more
+            interesting projects that I have done and
+            to have a conversation on the latest technological breakthroughs in Artifical Intelligence and Machine
+            learning. Feel free to brows through the blog posts below.
+            &nbsp
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row"> 
+    <div class="col-md-8 mt-3">
+      {% for post in post_list %}
+      <div class="card mb-5">
+        <div class="card-body">
+          <h2 class="card-title">{{ post.title }}</h2>
+          <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+
+          <p class="card-text">{{post.content|slice:":200" }}</p>
+          <a href="{% url 'post_details' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+{%endblock%}
